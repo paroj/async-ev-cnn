@@ -18,18 +18,15 @@ If you use this work for research, please cite our accompanying CVPR2019 Event-b
 - TensorFlow 1.4.0
 - Cython extensions: `build_setup.sh` 
 
-You can create a conda environment to run the code as it follows:
+You can create a Docker environment to run the code as it follows:
 ```
-conda create -n aync-ev-cnn python=3.6`
-conda activate aync-ev-cnn
-conda env update -f=requirements.yml
-python cython_setup.py build_ext --inplace
+docker build -t async_convnet .
 ```
 
 ### Run scripts
 
 - To check event layers equivalence (no dataset or checkpoint required):<br>
-`python src/scripts/test_correctness.py`
+```docker run --rm -v `pwd`:/workspace async_convnet python3 src/scripts/test_correctness.py```
 
 - To run network predictions on a dataset (select the proper .yml file):<br>
    - Unzip under `data/` the [N-Caltech101 data and checkpoint](https://polimi365-my.sharepoint.com/:f:/g/personal/10425666_polimi_it/Evq7q4F5KG9Fq-faVuTLqucBbo7zp8_ZadVsD7fKRboJgQ?e=mg6N3v)
